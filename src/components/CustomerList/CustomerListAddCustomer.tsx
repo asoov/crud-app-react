@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Customer } from "../../types/Customer";
 
 const style = {
   position: "absolute",
@@ -22,24 +23,29 @@ const style = {
   p: 4,
 };
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
+interface CustomerListAddCustomerProps {
+  addCustomer: (data: Customer) => Promise<void>;
 }
-export const CustomerListAddCustomer: React.FC = () => {
+export const CustomerListAddCustomer: React.FC<
+  CustomerListAddCustomerProps
+> = ({ addCustomer }) => {
+  // TODO: Loading and error handling for customer
   const [open, setOpen] = useState<boolean>(false);
-  const { register, handleSubmit, formState } = useForm();
-  const onSubmit = (data: FormData) => console.log(data);
+  const { register, handleSubmit, formState } = useForm<Customer>();
+  const onSubmit = async (data: Customer) => {
+    await addCustomer(data);
+    setOpen(false);
+  };
+
   return (
     <>
       <Button onClick={() => setOpen(!open)}>Add Customer</Button>
-      <Modal open={true} onClose={() => setOpen(false)}>
-        <Card style={style}>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Card style={style as unknown as any}>
           <Box sx={{ marginBottom: "16px" }}>
-            <Typography variant="h5">Add Customer</Typography>
+            <Typography variant="h6">Add Customer</Typography>
           </Box>
-          <FormGroup onSubmit={handleSubmit(onSubmit)}>
+          <FormGroup>
             <Box
               sx={{ marginBottom: "16px" }}
               display="flex"
@@ -49,7 +55,7 @@ export const CustomerListAddCustomer: React.FC = () => {
               <TextField
                 label="Name"
                 error={Boolean(formState.errors.name)}
-                helperText={formState.errors.name?.message}
+                helperText={formState.errors.name?.message as string}
                 {...register("name", {
                   required: { value: true, message: "Name required" },
                   minLength: 5,
@@ -58,7 +64,7 @@ export const CustomerListAddCustomer: React.FC = () => {
               <TextField
                 label="Email"
                 error={Boolean(formState.errors.email)}
-                helperText={formState.errors.email?.message}
+                helperText={formState.errors.email?.message as string}
                 {...register("email", {
                   required: { value: true, message: "Email required" },
                   pattern: {
@@ -70,13 +76,15 @@ export const CustomerListAddCustomer: React.FC = () => {
               <TextField
                 label="Phone"
                 error={Boolean(formState.errors.phone)}
-                helperText={formState.errors.phone?.message}
+                helperText={formState.errors.phone?.message as string}
                 {...register("phone", {
                   required: { value: true, message: "Phone number required" },
                 })}
               />
             </Box>
-            <Button onClick={handleSubmit(onSubmit)}>Add Customer</Button>
+            <Button type="submit" onClick={handleSubmit(onSubmit)}>
+              Add Customer
+            </Button>
           </FormGroup>
         </Card>
       </Modal>
