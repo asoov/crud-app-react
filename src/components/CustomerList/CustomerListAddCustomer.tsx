@@ -45,7 +45,7 @@ export const CustomerListAddCustomer: React.FC<
           <Box sx={{ marginBottom: "16px" }}>
             <Typography variant="h6">Add Customer</Typography>
           </Box>
-          <FormGroup>
+          <FormGroup data-test-id="form">
             <Box
               sx={{ marginBottom: "16px" }}
               display="flex"
@@ -82,8 +82,8 @@ export const CustomerListAddCustomer: React.FC<
                 })}
               />
             </Box>
-            <Button type="submit" onClick={handleSubmit(onSubmit)}>
-              Add Customer
+            <Button role="button" onClick={handleSubmit(onSubmit)}>
+              Save Customer
             </Button>
           </FormGroup>
         </Card>

@@ -28,7 +28,7 @@ export const CustomerListGrid: React.FC<CustomerListGridProps> = ({
       await customerService.addCustomer(customer);
       setDisplayedCustomers([
         ...displayedCustomers,
-        { ...customer, id: displayedCustomers.length + 1 },
+        { ...customer, id: (displayedCustomers.length + 1).toString() },
       ]);
     } catch (error) {
       console.error(error);
