@@ -9,7 +9,9 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Customer } from "../../types/Customer";
+import { Customer } from "@/types/Customer";
+import { LoadingButton } from "@mui/lab";
+import { Add } from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -24,28 +26,36 @@ const style = {
 };
 
 interface CustomerListAddCustomerProps {
-  addCustomer: (data: Customer) => Promise<void>;
+  customerAdd: (data: Customer) => Promise<void>;
+  customerAddLoading: boolean;
+  customerAddError: Error | null;
 }
 export const CustomerListAddCustomer: React.FC<
   CustomerListAddCustomerProps
-> = ({ addCustomer }) => {
-  // TODO: Loading and error handling for customer
+> = ({ customerAdd, customerAddLoading, customerAddError }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { register, handleSubmit, formState } = useForm<Customer>();
   const onSubmit = async (data: Customer) => {
-    await addCustomer(data);
+    await customerAdd(data);
     setOpen(false);
   };
 
   return (
     <>
-      <Button onClick={() => setOpen(!open)}>Add Customer</Button>
+      <Button
+        startIcon={<Add />}
+        variant="contained"
+        data-testid="customer-list-add-customer__add-button"
+        onClick={() => setOpen(!open)}
+      >
+        Add Customer
+      </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <Card style={style as unknown as any}>
           <Box sx={{ marginBottom: "16px" }}>
             <Typography variant="h6">Add Customer</Typography>
           </Box>
-          <FormGroup data-test-id="form">
+          <FormGroup>
             <Box
               sx={{ marginBottom: "16px" }}
               display="flex"
@@ -82,9 +92,14 @@ export const CustomerListAddCustomer: React.FC<
                 })}
               />
             </Box>
-            <Button role="button" onClick={handleSubmit(onSubmit)}>
+            <LoadingButton
+              loading={customerAddLoading}
+              role="button"
+              color={customerAddError ? "error" : "primary"}
+              onClick={handleSubmit(onSubmit)}
+            >
               Save Customer
-            </Button>
+            </LoadingButton>
           </FormGroup>
         </Card>
       </Modal>

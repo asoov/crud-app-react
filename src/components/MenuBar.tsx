@@ -1,4 +1,4 @@
-import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
+import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 export const MenuBar: React.FC = () => (
@@ -15,8 +15,9 @@ export const MenuBar: React.FC = () => (
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Testo CRUD-App
+          CRUD-App
         </Typography>
       </Toolbar>
     </AppBar>
-  </div>)
+  </div>
+);

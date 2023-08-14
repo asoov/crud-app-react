@@ -7,7 +7,7 @@ export const DefaultPageWrapper: React.FC<{ children: ReactNode }> = ({
 }) => {
   return (
     <div>
-      <Box sx={{ marginBottom: "16px" }}>
+      <Box sx={{ marginBottom: "32px" }}>
         <MenuBar />
       </Box>
       {children}

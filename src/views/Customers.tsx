@@ -1,10 +1,6 @@
-import {DefaultPageWrapper} from "../wrappers/DefaultPageWrapper";
-import {CustomerList} from "../components/CustomerList/CustomerList";
+import { FC } from "react";
+import { CustomerList } from "../components/CustomerList/CustomerList";
 
-export const Customers: React.FC = () => {
-  return (
-    <DefaultPageWrapper>
-      <CustomerList />
-    </DefaultPageWrapper>
-  )
-}
+export const Customers: FC = () => {
+  return <CustomerList />;
+};

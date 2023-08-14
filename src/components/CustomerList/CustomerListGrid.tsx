@@ -1,48 +1,61 @@
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { colDefs } from "./columnDefs";
-import { Box, Button, TextField } from "@mui/material";
-import { useContext, useState } from "react";
+import { Box, TextField } from "@mui/material";
+import { ChangeEvent, FC, useContext, useState } from "react";
 import { CustomerListAddCustomer } from "./CustomerListAddCustomer";
-import { Customer } from "../../types/Customer";
-import { AppContext } from "../../context";
+import {
+  Customer,
+  CustomerDeleteError,
+  CustomerDeleteLoading,
+} from "@/types/Customer";
+import { useCustomerState } from "@/hooks/useCustomerState";
+import { CustomerActionType } from "@/types/Customer";
+import { LoadingButton } from "@mui/lab";
+import { AppContext } from "@/context";
+import { Error } from "@mui/icons-material";
 
-interface CustomerListGridProps {
-  customers: Customer[];
-}
-export const CustomerListGrid: React.FC<CustomerListGridProps> = ({
-  customers,
-}) => {
+export const CustomerListGrid: FC = () => {
+  const { customerService } = useContext(AppContext);
+
   const [searchInput, setSearchInput] = useState<string>("");
+  const [customerAddLoading, setCustomerAddLoading] = useState<boolean>(false);
+  const [customerAddError, setCustomerAddError] = useState<Error | null>(null);
 
-  // TODO: this should be persisted in storage
-  const [displayedCustomers, setDisplayedCustomers] =
-    useState<Customer[]>(customers);
-  const filteredValuesBySearchInput = displayedCustomers.filter((customer) =>
+  const [customerDeleteLoading, setCustomerDeleteLoading] =
+    useState<CustomerDeleteLoading | null>(null);
+  const [customerDeleteError, setCustomerDeleteError] =
+    useState<CustomerDeleteError | null>(null);
+
+  const { customers, dispatch } = useCustomerState();
+
+  const filteredValuesBySearchInput = customers.filter((customer) =>
     customer.name.includes(searchInput),
   );
 
-  const { customerService } = useContext(AppContext);
-
   const handleAddCustomer = async (customer: Customer) => {
     try {
+      setCustomerAddLoading(true);
       await customerService.addCustomer(customer);
-      setDisplayedCustomers([
-        ...displayedCustomers,
-        { ...customer, id: (displayedCustomers.length + 1).toString() },
-      ]);
-    } catch (error) {
-      console.error(error);
+      dispatch({
+        type: CustomerActionType.ADD_CUSTOMER,
+        payload: customer,
+      });
+    } catch (error: unknown) {
+      setCustomerAddError(error as Error);
+    } finally {
+      setCustomerAddLoading(false);
     }
   };
 
   const handleDeleteCustomer = async (id: string) => {
     try {
+      setCustomerDeleteLoading({ id, loading: true });
       await customerService.deleteCustomer(id);
-      setDisplayedCustomers(
-        displayedCustomers.filter((customer) => customer.id !== id),
-      );
+      dispatch({ type: CustomerActionType.DELETE_CUSTOMER, payload: id });
     } catch (error) {
-      console.error(error);
+      setCustomerDeleteError({ id, error } as CustomerDeleteError);
+    } finally {
+      setCustomerDeleteLoading(null);
     }
   };
 
@@ -52,31 +65,50 @@ export const CustomerListGrid: React.FC<CustomerListGridProps> = ({
       field: "delete",
       headerName: "Delete",
       renderCell: (params: GridRenderCellParams) => (
-        <Button onClick={() => handleDeleteCustomer(params.id as string)}>
+        <LoadingButton
+          data-test-id="customer-list-grid-delete-button"
+          loading={customerDeleteLoading?.id === params.id}
+          color={customerDeleteError?.id === params.id ? "error" : "primary"}
+          onClick={() => handleDeleteCustomer(params.id as string)}
+        >
+          {customerDeleteError?.id === params.id && (
+            <Error sx={{ marginRight: "8px" }} />
+          )}
           Delete
-        </Button>
+        </LoadingButton>
       ),
     },
   ];
 
   return (
     <div>
-      <Box sx={{ marginBottom: "16px" }}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={2}
+        sx={{ marginBottom: "16px" }}
+      >
         <TextField
           value={searchInput}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
             setSearchInput(event.target.value)
           }
+          error={Boolean(customerAddError)}
           fullWidth={true}
           id="outlined-basic"
           label="Search for customer name"
           variant="outlined"
         />
-        <CustomerListAddCustomer addCustomer={handleAddCustomer} />
+        <CustomerListAddCustomer
+          customerAdd={handleAddCustomer}
+          customerAddError={customerAddError}
+          customerAddLoading={customerAddLoading}
+        />
       </Box>
       <DataGrid
         rows={filteredValuesBySearchInput}
         columns={colDefsWithInteractiveElements}
+        columnBuffer={5}
       />
     </div>
   );

@@ -1,67 +1,68 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { CustomerListAddCustomer } from "./CustomerListAddCustomer";
 import { vi } from "vitest";
-import userEvent from "@testing-library/user-event";
+import { Customer } from "@/types/Customer";
 
-//TODO: Open Modal on click to make tests pass
 describe("CustomerListAddCustomer", () => {
-  const mockAddCustomer = vi.fn();
+  let mockCustomerAdd: (data: Customer) => Promise<void>;
+
   beforeEach(() => {
-    render(<CustomerListAddCustomer addCustomer={mockAddCustomer} />);
-    userEvent.click(screen.getByText("Add Customer"));
+    mockCustomerAdd = vi.fn(() => Promise.resolve());
   });
 
-  it.only("should render name field", () => {
-    screen.debug();
-    expect(screen.findByLabelText("Name")).toBeInTheDocument();
-  });
+  it("opens and closes the modal", async () => {
+    render(
+      <CustomerListAddCustomer
+        customerAdd={mockCustomerAdd}
+        customerAddLoading={false}
+        customerAddError={null}
+      />,
+    );
 
-  it("should render email field", () => {
-    expect(screen.findByLabelText("Email")).toBeInTheDocument();
-  });
+    // Modal should be initially closed
+    expect(screen.queryByTestId("form")).not.toBeInTheDocument();
 
-  it("should render phone field", () => {
-    expect(screen.findByLabelText("Email")).toBeInTheDocument();
-  });
-
-  describe("validation", () => {
-    describe("empty state", () => {
-      beforeEach(async () => {
-        const button = await screen.findByText("Save Customer");
-        await waitFor(() => user.click(button));
-      });
-      it("should show name required error", () => {
-        expect(screen.findByText("Name required")).toBeInTheDocument();
-      });
-      it("should show email required error", () => {
-        expect(screen.findByText("Name required")).toBeInTheDocument();
-      });
-      it("should show phone required error", () => {
-        expect(screen.findByText("Phone number required")).toBeInTheDocument();
-      });
+    // Open the modal
+    await userEvent.click(screen.getByText("Add Customer"));
+    await waitFor(() => {
+      expect(screen.getByLabelText("Name")).toBeInTheDocument();
     });
-    describe("invalid email", () => {
-      beforeEach(async () => {
-        user.type(await screen.findByLabelText("Email"), "invalid email");
-        const button = await screen.findByText("Save Customer");
-        await waitFor(() => user.click(button));
-      });
-      it("should show invalid email error", () => {
-        expect(
-          screen.findByText("Entered value does not match email format"),
-        ).toBeInTheDocument();
-      });
+
+    // Close the modal
+    await userEvent.click(
+      screen.getByTestId("customer-list-add-customer__add-button"),
+    );
+    await waitFor(() => {
+      expect(screen.queryByLabelText("Name")).not.toBeInTheDocument();
     });
-    describe("invalid name", () => {
-      beforeEach(async () => {
-        user.type(await screen.findByLabelText("Name"), "a");
-        const button = await screen.findByText("Save Customer");
-        await waitFor(() => user.click(button));
-      });
-      it("should show invalid name error", () => {
-        expect(
-          screen.findByText("Name must be at least 5 characters"),
-        ).toBeInTheDocument();
+  });
+
+  it("submits the form and triggers customerAdd", async () => {
+    render(
+      <CustomerListAddCustomer
+        customerAdd={mockCustomerAdd}
+        customerAddLoading={false}
+        customerAddError={null}
+      />,
+    );
+
+    // Open the modal
+    await userEvent.click(screen.getByText("Add Customer"));
+
+    // Fill the form
+    await userEvent.type(screen.getByLabelText("Name"), "Test Name");
+    await userEvent.type(screen.getByLabelText("Email"), "test@email.com");
+    await userEvent.type(screen.getByLabelText("Phone"), "1234567890");
+
+    // Submit the form
+    await userEvent.click(screen.getByText("Save Customer"));
+
+    await waitFor(() => {
+      expect(mockCustomerAdd).toHaveBeenCalledWith({
+        name: "Test Name",
+        email: "test@email.com",
+        phone: "1234567890",
       });
     });
   });

@@ -15,12 +15,16 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.7",
     "@mui/icons-material": "^5.14.3",
+    "@mui/lab": "^5.0.0-alpha.139",
     "@mui/material": "^5.14.3",
     "@mui/x-data-grid": "^6.11.0",
+    "@types/uuid": "^9.0.2",
     "prettier": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.45.4"
+    "react-hook-form": "^7.45.4",
+    "react-router-dom": "^6.15.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",

@@ -1,33 +1,38 @@
-import { useContext, useEffect, useState } from "react";
+import { FC, useCallback, useContext, useEffect, useReducer } from "react";
 import { CustomerListGrid } from "./CustomerListGrid";
-import { AppContext } from "../../context";
+import { AppContext, CustomerContext } from "@/context";
+import { customerReducer } from "@/reducers/customersReducer";
+import { CustomerActionType } from "@/types/Customer";
+import { CustomerListLoading } from "@/components/CustomerList/CustomerListLoading";
+import { CustomerListError } from "@/components/CustomerList/CustomerListError";
 
-export const CustomerList: React.FC = () => {
-  const [customers, setCustomers] = useState([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | undefined>(undefined);
+export const CustomerList: FC = () => {
   const { customerService } = useContext(AppContext);
-  useEffect(() => {
-    setLoading(true);
-    customerService
-      .getCustomers()
-      .then((customers) => setCustomers(customers))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  }, []);
-  return (
-    <>
-      {loading && <CustomerListLoading />}
-      {error && <CustomerLoadingError />}
-      {!loading && !error && <CustomerListGrid customers={customers} />}
-    </>
+  const [{ customers, loading, error }, dispatch] = useReducer(
+    customerReducer,
+    { customers: [], loading: true, error: null },
   );
-};
+  const fetchCustomers = useCallback(async () => {
+    try {
+      dispatch({ type: CustomerActionType.SET_LOADING, payload: true });
+      const customers = await customerService.getCustomers();
+      dispatch({ type: CustomerActionType.SET_CUSTOMERS, payload: customers });
+    } catch (error: unknown) {
+      dispatch({ type: CustomerActionType.SET_ERROR, payload: error as Error });
+    } finally {
+      dispatch({ type: CustomerActionType.SET_LOADING, payload: false });
+    }
+  }, [customerService]);
 
-const CustomerListLoading: React.FC = () => {
-  return <div>Loading customers...</div>;
-};
+  useEffect(() => {
+    fetchCustomers().catch((error) => console.error(error));
+  }, [fetchCustomers]);
 
-const CustomerLoadingError: React.FC = () => {
-  return <div>Failed to load customers</div>;
+  return (
+    <CustomerContext.Provider value={{ customers, dispatch }}>
+      {loading && <CustomerListLoading />}
+      {error && <CustomerListError />}
+      {!loading && !error && <CustomerListGrid />}
+    </CustomerContext.Provider>
+  );
 };
