@@ -1,5 +1,5 @@
 {
-  "name": "testo-crud-app",
+  "name": "crud-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -18,12 +18,14 @@
     "@mui/lab": "^5.0.0-alpha.139",
     "@mui/material": "^5.14.3",
     "@mui/x-data-grid": "^6.11.0",
+    "@types/react-transition-group": "^4.4.6",
     "@types/uuid": "^9.0.2",
     "prettier": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-router-dom": "^6.15.0",
+    "react-transition-group": "^4.4.5",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

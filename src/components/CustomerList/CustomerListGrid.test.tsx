@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { CustomerListGrid } from "./CustomerListGrid";
-import { AppContext } from "@/context";
+import { AppContext, AppContextType } from "@/context";
 import { vi } from "vitest";
 import { CustomerActionType } from "@/types/Customer";
 
@@ -29,7 +29,11 @@ describe("CustomerListGrid", () => {
 
   it("displays customers in the DataGrid", () => {
     render(
-      <AppContext.Provider value={{ customerService: mockCustomerService }}>
+      <AppContext.Provider
+        value={
+          { customerService: mockCustomerService } as unknown as AppContextType
+        }
+      >
         <CustomerListGrid />
       </AppContext.Provider>,
     );
@@ -40,7 +44,11 @@ describe("CustomerListGrid", () => {
 
   it("filters customers based on search input", async () => {
     render(
-      <AppContext.Provider value={{ customerService: mockCustomerService }}>
+      <AppContext.Provider
+        value={
+          { customerService: mockCustomerService } as unknown as AppContextType
+        }
+      >
         <CustomerListGrid />
       </AppContext.Provider>,
     );
@@ -57,7 +65,11 @@ describe("CustomerListGrid", () => {
   it("displays a loading spinner when deleting customer is in progress", async () => {
     mockCustomerService.deleteCustomer.mockReturnValue(new Promise(() => {}));
     render(
-      <AppContext.Provider value={{ customerService: mockCustomerService }}>
+      <AppContext.Provider
+        value={
+          { customerService: mockCustomerService } as unknown as AppContextType
+        }
+      >
         <CustomerListGrid />
       </AppContext.Provider>,
     );
@@ -73,7 +85,11 @@ describe("CustomerListGrid", () => {
   it("displays button in error state when deletion fails", async () => {
     mockCustomerService.deleteCustomer.mockRejectedValue(new Error("Failed"));
     render(
-      <AppContext.Provider value={{ customerService: mockCustomerService }}>
+      <AppContext.Provider
+        value={
+          { customerService: mockCustomerService } as unknown as AppContextType
+        }
+      >
         <CustomerListGrid />
       </AppContext.Provider>,
     );
@@ -88,10 +104,14 @@ describe("CustomerListGrid", () => {
   });
 
   it("deletes a customer", async () => {
-    mockCustomerService.deleteCustomer.mockResolvedValueOnce();
+    mockCustomerService.deleteCustomer.mockResolvedValueOnce({ id: 1 });
 
     render(
-      <AppContext.Provider value={{ customerService: mockCustomerService }}>
+      <AppContext.Provider
+        value={
+          { customerService: mockCustomerService } as unknown as AppContextType
+        }
+      >
         <CustomerListGrid />
       </AppContext.Provider>,
     );
