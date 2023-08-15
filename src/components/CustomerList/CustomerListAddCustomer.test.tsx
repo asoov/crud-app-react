@@ -1,69 +1,68 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { CustomerListAddCustomer } from "./CustomerListAddCustomer";
-import { vi } from "vitest";
-import { Customer } from "@/types/Customer";
+import { AppContext, AppContextType } from "@/context";
+import { useCustomerState } from "@/hooks/useCustomerState";
+import { CustomerActionType } from "@/types/Customer";
+import { Mock, vi } from "vitest";
+import { AddOrEditCustomerModalProps } from "@/components/AddOrEditCustomerModal";
+
+// Mock necessary dependencies
+vi.mock("@/hooks/useCustomerState");
+vi.mock("@/components/AddOrEditCustomerModal", () => ({
+  AddOrEditCustomerModal: ({
+    onSubmitHandler,
+    children,
+  }: AddOrEditCustomerModalProps) => (
+    <button onClick={() => onSubmitHandler({ id: 123, name: "Test Customer" })}>
+      {children}
+    </button>
+  ),
+}));
 
 describe("CustomerListAddCustomer", () => {
-  let mockCustomerAdd: (data: Customer) => Promise<void>;
+  const mockAddCustomerService = vi.fn();
+  const mockDispatch = vi.fn();
 
   beforeEach(() => {
-    mockCustomerAdd = vi.fn(() => Promise.resolve());
-  });
+    vi.clearAllMocks();
 
-  it("opens and closes the modal", async () => {
-    render(
-      <CustomerListAddCustomer
-        customerAdd={mockCustomerAdd}
-        customerAddLoading={false}
-        customerAddError={null}
-      />,
-    );
-
-    // Modal should be initially closed
-    expect(screen.queryByTestId("form")).not.toBeInTheDocument();
-
-    // Open the modal
-    await userEvent.click(screen.getByText("Add Customer"));
-    await waitFor(() => {
-      expect(screen.getByLabelText("Name")).toBeInTheDocument();
-    });
-
-    // Close the modal
-    await userEvent.click(
-      screen.getByTestId("customer-list-add-customer__add-button"),
-    );
-    await waitFor(() => {
-      expect(screen.queryByLabelText("Name")).not.toBeInTheDocument();
+    (useCustomerState as Mock).mockReturnValue({
+      dispatch: mockDispatch,
     });
   });
 
-  it("submits the form and triggers customerAdd", async () => {
+  it("renders AddOrEditCustomerModal and handles customer addition", async () => {
+    const mockContextValue = {
+      customerService: {
+        addCustomer: mockAddCustomerService,
+      },
+    };
+
     render(
-      <CustomerListAddCustomer
-        customerAdd={mockCustomerAdd}
-        customerAddLoading={false}
-        customerAddError={null}
-      />,
+      <AppContext.Provider
+        value={mockContextValue as unknown as AppContextType}
+      >
+        <CustomerListAddCustomer />
+      </AppContext.Provider>,
     );
 
-    // Open the modal
-    await userEvent.click(screen.getByText("Add Customer"));
+    const addButton = screen.getByText("Add Customer");
+    expect(addButton).toBeInTheDocument();
 
-    // Fill the form
-    await userEvent.type(screen.getByLabelText("Name"), "Test Name");
-    await userEvent.type(screen.getByLabelText("Email"), "test@email.com");
-    await userEvent.type(screen.getByLabelText("Phone"), "1234567890");
+    // Using userEvent to click the button
+    await userEvent.click(addButton);
 
-    // Submit the form
-    await userEvent.click(screen.getByText("Save Customer"));
+    // Ensure the service is called correctly
+    expect(mockAddCustomerService).toHaveBeenCalledWith({
+      id: 123,
+      name: "Test Customer",
+    });
 
-    await waitFor(() => {
-      expect(mockCustomerAdd).toHaveBeenCalledWith({
-        name: "Test Name",
-        email: "test@email.com",
-        phone: "1234567890",
-      });
+    // Ensure the dispatch is called with the correct action
+    expect(mockDispatch).toHaveBeenCalledWith({
+      type: CustomerActionType.ADD_CUSTOMER,
+      payload: { id: 123, name: "Test Customer" },
     });
   });
 });

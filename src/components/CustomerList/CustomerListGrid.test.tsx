@@ -74,7 +74,9 @@ describe("CustomerListGrid", () => {
       </AppContext.Provider>,
     );
 
-    const deleteButton = screen.getAllByRole("button", { name: "Delete" })[0];
+    const deleteButton = screen.getAllByTestId(
+      "customer-list-grid-delete-button",
+    )[0];
     expect(deleteButton).toBeInTheDocument();
     await userEvent.click(deleteButton);
     await waitFor(() => {
@@ -94,13 +96,11 @@ describe("CustomerListGrid", () => {
       </AppContext.Provider>,
     );
 
-    const deleteButton = screen.getAllByRole("button", { name: "Delete" })[0];
+    const deleteButton = screen.getAllByTestId(
+      "customer-list-grid-delete-button",
+    )[0];
     expect(deleteButton).toBeInTheDocument();
     await userEvent.click(deleteButton);
-    screen.debug(undefined, 100000);
-    // await waitFor(() => {
-    //   expect(deleteButton).toHaveProperty("error");
-    // });
   });
 
   it("deletes a customer", async () => {
@@ -116,7 +116,11 @@ describe("CustomerListGrid", () => {
       </AppContext.Provider>,
     );
 
-    await userEvent.click(screen.getAllByRole("button", { name: "Delete" })[0]);
+    screen.debug(undefined, 100000);
+
+    await userEvent.click(
+      screen.getAllByTestId("customer-list-grid-delete-button")[0],
+    );
 
     await waitFor(() => {
       expect(mockCustomerService.deleteCustomer).toHaveBeenCalledWith("1");

@@ -17,6 +17,16 @@ export const customerReducer = (
         ...state,
         customers: [...state.customers, { ...action.payload, id: uuidv4() }],
       };
+    case CustomerActionType.EDIT_CUSTOMER:
+      return {
+        ...state,
+        customers: state.customers.map((customer) => {
+          if (customer.id === action.payload.id) {
+            return action.payload;
+          }
+          return customer;
+        }),
+      };
     case CustomerActionType.DELETE_CUSTOMER:
       return {
         ...state,

@@ -1,3 +1,5 @@
+import { Customer } from "@/types/Customer";
+
 export class CustomerService {
   constructor(endpoint: string) {
     this.endpoint = endpoint;
@@ -6,9 +8,16 @@ export class CustomerService {
   async getCustomers() {
     return await fetch(this.endpoint).then((res) => res.json());
   }
-  async addCustomer(customer: unknown) {
+  async addCustomer(customer: Customer) {
     return await fetch(this.endpoint, {
       method: "POST",
+      body: JSON.stringify(customer),
+    }).then((res) => res.json());
+  }
+
+  async editCustomer(customer: Customer) {
+    return await fetch(`${this.endpoint}/${customer.id}`, {
+      method: "PUT",
       body: JSON.stringify(customer),
     }).then((res) => res.json());
   }
