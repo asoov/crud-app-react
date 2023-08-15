@@ -1,5 +1,5 @@
 import { FC, useCallback, useContext, useEffect, useReducer } from "react";
-import { CustomerListGrid } from "./CustomerListGrid";
+import { CustomerListGrid } from "./CustomerListGrid/CustomerListGrid";
 import { AppContext, CustomerContext } from "@/context";
 import { customerReducer } from "@/reducers/customersReducer";
 import { CustomerActionType } from "@/types/Customer";

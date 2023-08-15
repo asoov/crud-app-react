@@ -1,5 +1,5 @@
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { CustomerListActionCell } from "@/components/CustomerList/CustomerListActionCell";
+import { CustomerListActionCell } from "@/components/CustomerList/CustomerListGrid/CustomerListActionCell";
 
 export const colDefs: GridColDef[] = [
   {

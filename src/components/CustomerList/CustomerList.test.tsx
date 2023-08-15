@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { CustomerService } from "@/services/CustomerService";
 
 // Mock out child components
-vi.mock("./CustomerListGrid", () => ({
+vi.mock("./CustomerListGrid/CustomerListGrid", () => ({
   CustomerListGrid: () => <div data-testid="customer-list-grid">Grid</div>,
 }));
 vi.mock("@/components/CustomerList/CustomerListLoading", () => ({

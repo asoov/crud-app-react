@@ -41,7 +41,7 @@ export const AddOrEditCustomerModal: FC<AddOrEditCustomerModalProps> = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const onSubmit = async (data: Customer) => {
+  const onSubmit = async (data: Partial<Customer>) => {
     try {
       setLoading(true);
       await onSubmitHandler(data);
