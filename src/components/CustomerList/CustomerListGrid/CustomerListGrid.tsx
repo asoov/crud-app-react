@@ -39,11 +39,13 @@ export const CustomerListGrid: FC = () => {
         />
         <CustomerListAddCustomer />
       </Box>
-      <DataGrid
-        rows={filteredValuesBySearchInput}
-        columns={colDefsWithInteractiveElements}
-        columnBuffer={5}
-      />
+      <Box height="600px">
+        <DataGrid
+          rows={filteredValuesBySearchInput}
+          columns={colDefsWithInteractiveElements}
+          columnBuffer={5}
+        />
+      </Box>
     </div>
   );
 };

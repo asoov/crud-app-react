@@ -40,14 +40,12 @@ export const AddOrEditCustomerModal: FC<AddOrEditCustomerModalProps> = ({
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
-
   const onSubmit = async (data: Partial<Customer>) => {
     try {
       setLoading(true);
       await onSubmitHandler(data);
       setOpen(false);
     } catch (error: unknown) {
-      console.log("edit catch");
       setError(error as Error);
     } finally {
       setLoading(false);
@@ -95,7 +93,10 @@ export const AddOrEditCustomerModal: FC<AddOrEditCustomerModalProps> = ({
                 helperText={formState.errors.name?.message as string}
                 {...register("name", {
                   required: { value: true, message: "Name required" },
-                  minLength: 5,
+                  minLength: {
+                    value: 5,
+                    message: "Name must be at least 5 characters long",
+                  },
                 })}
               />
               <TextField
