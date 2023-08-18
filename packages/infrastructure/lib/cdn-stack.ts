@@ -1,9 +1,5 @@
 import * as cdk from "aws-cdk-lib";
 import {
-  aws_elasticloadbalancingv2 as elb,
-  aws_elasticloadbalancingv2_targets as elbTargets,
-  aws_iam as iam,
-  aws_ec2 as ec2,
   aws_s3 as s3,
   aws_cloudfront as cloudfront,
   aws_cloudfront_origins as cloudfrontOrigins,
@@ -11,13 +7,8 @@ import {
   aws_route53 as route53,
   aws_route53_targets as route53Targets,
 } from "aws-cdk-lib";
-import {
-  AllowedMethods,
-  OriginProtocolPolicy,
-  ViewerProtocolPolicy,
-} from "aws-cdk-lib/aws-cloudfront";
 import { Construct } from "constructs";
-import { BlockPublicAccess, BucketAccessControl } from "@aws-cdk/aws-s3";
+import { BlockPublicAccess, BucketAccessControl } from "aws-cdk-lib/aws-s3";
 
 export class CdnStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
