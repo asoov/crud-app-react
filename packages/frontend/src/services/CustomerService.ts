@@ -6,6 +6,7 @@ export class CustomerService {
   }
   private endpoint: string = "";
   async getCustomers() {
+    console.log(import.meta.env.VITE_API_ENDPOINT);
     return await fetch(this.endpoint).then((res) => res.json());
   }
   async addCustomer(customer: Customer) {

@@ -116,8 +116,6 @@ describe("CustomerListGrid", () => {
       </AppContext.Provider>,
     );
 
-    screen.debug(undefined, 100000);
-
     await userEvent.click(
       screen.getAllByTestId("customer-list-grid-delete-button")[0],
     );
