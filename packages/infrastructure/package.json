@@ -1,0 +1,31 @@
+{
+  "name": "aws-cdk-with-typescript-foundations",
+  "version": "0.1.0",
+  "bin": {
+    "aws-cdk-with-typescript-foundations": "bin/aws-cdk-with-typescript-foundations.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "check": "npx npm-check-updates \"/aws-cdk/\"",
+    "upgrade": "npx npm-check-updates -u \"/aws-cdk/\" && npm install"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.4",
+    "@types/node": "20.5.0",
+    "aws-cdk": "2.92.0",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "~5.1.6"
+  },
+  "dependencies": {
+    "@aws-cdk/assert": "^2.55.1",
+    "@aws-cdk/aws-s3": "^1.183.0",
+    "aws-cdk-lib": "2.92.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.21"
+  }
+}
