@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import * as cdk from 'aws-cdk-lib';
-import { CdnStack } from '../lib/cdn-stack';
+import "source-map-support/register";
+import * as cdk from "aws-cdk-lib";
+import { CdnStack } from "../lib/cdn-stack";
 
 const app = new cdk.App();
-new CdnStack(app, 'AwsCdkWithTypescriptFoundationsStack', {
+new CdnStack(app, "CrudAppStack", {
   env: {
-    account: '714722585977',
-    region: 'eu-central-1'
-  }
+    account: "714722585977",
+    region: "eu-central-1",
+  },
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

@@ -5,58 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a0a3c2d-516b-40ff-ab0b-60ff3ccae7e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/.npmignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/cdk.context.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/cdk.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/jest.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/infrastructure/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/.eslintrc.cjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/test.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/public/vite.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddOrEditCustomerModal.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/AddOrEditCustomerModal.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddOrEditCustomerModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/AddOrEditCustomerModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerList.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerList.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListAddCustomer.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListAddCustomer.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListAddCustomer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListAddCustomer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListError.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListError.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/CustomerListActionCell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/CustomerListActionCell.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/CustomerListActionCellDelete.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/CustomerListActionCellDelete.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/CustomerListActionCellDelete.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/CustomerListActionCellDelete.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/CustomerListActionCellEdit.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/CustomerListActionCellEdit.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/CustomerListActionCellEdit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/CustomerListActionCellEdit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/CustomerListGrid.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/CustomerListGrid.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/CustomerListGrid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/CustomerListGrid.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListGrid/columnDefs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListGrid/columnDefs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerList/CustomerListLoading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/CustomerList/CustomerListLoading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/components/MenuBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/context.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useCustomerState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/hooks/useCustomerState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/customersReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/reducers/customersReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/CustomerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/services/CustomerService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/setup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/test/setup.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/Customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/types/Customer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Customers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/views/Customers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/views/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vite-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/vite-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wrappers/DefaultPageWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/src/wrappers/DefaultPageWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/tsconfig.node.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/packages/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/infrastructure/bin/aws-cdk-with-typescript-foundations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/infrastructure/bin/aws-cdk-with-typescript-foundations.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/infrastructure/lib/aws-cdk-with-typescript-foundations-stack.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/infrastructure/lib/cdn-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/infrastructure/lib/cdn-stack.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +150,7 @@
       <workItem from="1692085807048" duration="8286000" />
       <workItem from="1692118346583" duration="5972000" />
       <workItem from="1692167649030" duration="4908000" />
-      <workItem from="1692355415344" duration="1266000" />
+      <workItem from="1692355415344" duration="6739000" />
     </task>
     <servers />
   </component>
