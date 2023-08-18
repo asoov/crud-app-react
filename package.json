@@ -1,0 +1,17 @@
+{
+  "name": "testo-crud-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "frontend:dev": "yarn --cwd packages/frontend dev",
+    "frontend:build": "yarn --cwd packages/frontend build",
+    "infra:dev": "yarn --cwd packages/infra cdk synth"
+  },
+  "repository": "git@github.com:asoov/t-crud-app.git",
+  "author": "Adrian Soovary <adrian.soovary@gmail.com>",
+  "license": "MIT"
+}
