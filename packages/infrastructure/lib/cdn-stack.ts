@@ -21,7 +21,7 @@ export class CdnStack extends cdk.Stack {
       accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
       publicReadAccess: true,
       websiteIndexDocument: "index.html",
-      websiteErrorDocument: "/error/index.html",
+      websiteErrorDocument: "index.html",
     });
 
     const certificate = acm.Certificate.fromCertificateArn(

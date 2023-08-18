@@ -28,6 +28,7 @@ jobs:
 
       - run: yarn install
       - run: yarn frontend:test
+      - run: echo ${{ env.VITE_API_ENDPOINT }}
       - run: yarn frontend:build
 
       # Save build artifacts for deployment

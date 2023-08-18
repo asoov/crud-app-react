@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a0a3c2d-516b-40ff-ab0b-60ff3ccae7e9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/infrastructure/lib/cdn-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/infrastructure/lib/cdn-stack.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/infrastructure/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/infrastructure/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/infrastructure/test/aws-cdk-with-typescript-foundations.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/infrastructure/test/aws-cdk-with-typescript-foundations.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/test-build-deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/test-build-deploy.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +147,7 @@
       <workItem from="1692118346583" duration="5972000" />
       <workItem from="1692167649030" duration="4908000" />
       <workItem from="1692355415344" duration="7265000" />
-      <workItem from="1692362845507" duration="5699000" />
+      <workItem from="1692362845507" duration="6338000" />
     </task>
     <servers />
   </component>
