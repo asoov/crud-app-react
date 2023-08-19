@@ -10,7 +10,8 @@
     "frontend:dev": "yarn --cwd packages/frontend dev",
     "frontend:build": "yarn --cwd packages/frontend build",
     "frontend:test": "yarn --cwd packages/frontend test",
-    "infra:dev": "yarn --cwd packages/infra cdk synth"
+    "infra:dev": "yarn --cwd packages/infra cdk synth",
+    "infra:deploy": "yarn --cwd packages/infra cdk deploy"
   },
   "repository": "git@github.com:asoov/t-crud-app.git",
   "author": "Adrian Soovary <adrian.soovary@gmail.com>",
